@@ -4,7 +4,7 @@ Created on Sun Dec 25 13:16:29 2022
 
 @author: farafehizoro
 """
-from .wrsi import wrsi
+from .wrsi import Wrsi
 
 class wrsi_daily(Wrsi):
     """
@@ -14,10 +14,10 @@ class wrsi_daily(Wrsi):
     """
     def __init__(self, ETa, ETc, method = "Original", rain = []):
         
-        wrsi.__init__(self, ETa, ETc, method, rain)
+        Wrsi.__init__(self, ETa, ETc, method, rain)
         self.wrsi = []
         
-    def calculate_wrsi_daily(self, timestep = daily):
+    def calculate_wrsi_daily(self):
         """
         calculate wrsi for daily data
 
@@ -46,11 +46,12 @@ class wrsi_daily(Wrsi):
                 print("Negative value for Rain data, please check your data. Rain not considered for wrsi calculation.")
                 self.rain = []
                 self.with_rain = False
+        
         if (self.method == "Original"): #mbol tsy implémenter ko ny fahafatesan'ilay voly : to do
             self.wrsi = self._wrsi_original_daily()
         else: 
-            wrsi = self._wrsi_modified_daily()
-        return wrsi
+            self.wrsi = self._wrsi_modified_daily()
+        return self.wrsi
         
         
         
@@ -82,8 +83,33 @@ class wrsi_daily(Wrsi):
             wrsi_original.append(wrsi_temp)
         return wrsi_original
     
-    
-    
+    def _wrsi_modified_daily(self):
+        """
+        calculate daily wrsi with modified method
+
+        Returns
+        -------
+        wrsi: list of daily wrsi.
+
+        """
+        wrsi_modified = []
+        ETa_cumul = 0
+        ETc_cumul = 0
+        excess_number = 0
+        for i in range(len(self.ETa)):
+            ETa_cumul += self.ETa[i]
+            ETc_cumul += self.ETc[i]
+            if(self.with_rain_data):
+                if(i < 9): 
+                    if(self._water_excess_daily(self.ETa[0:(i+1)], self.rain[0:(i+1)])):
+                        excess_number += 0.1 #plus 1 jour, soit 0.1 dekad
+                else:
+                    if(self._water_excess_daily(self.ETa[(i-9):(i+1)], self.rain[(i-9):(i+1)])):
+                        excess_number += 0.1 #plus 1 jour, soit 0.1 dekad
+            wrsi_temp = 100 * ETa_cumul / ETc_cumul - (excess_number * 3)
+            wrsi_modified.append(wrsi_temp)
+        return wrsi_modified
+        
     def _water_excess_dek(ETa, RR):
         """
         Method to determine if there was a water success 
