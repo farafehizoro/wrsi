@@ -52,4 +52,28 @@ class wrsi_dekadal(Wrsi):
         else: 
             self.wrsi = self._wrsi_modified_dekadal()
         return self.wrsi
+    
+    def _wrsi_original_dekadal(self):
+        """
+        calculate wrsi using original method for dekadal data
+
+        Returns
+        -------
+        a list containing dekadal wrsi data .
+
+        """
+        wrsi_original = []
+           
+        wrsi_temp = 100 
+        ETc_tot = sum (self.ETc)
+        for i in range(len(self.ETa)): 
+            if ( self.ETa[i] < self.ETc[i]): #if there was water deficit
+                diff = self.ETc[i] - self.ETa[i]
+                wrsi_temp = wrsi_temp - 100 * (diff / ETc_tot) #water déficit
+                if(self.with_rain): 
+                    if(self._water_excess_dek(self.ETa[i], self.rain[i])):
+                        wrsi_temp = wrsi_temp - 3    
+                            
+            wrsi_original.append(wrsi_temp)
+        return wrsi_original
         
