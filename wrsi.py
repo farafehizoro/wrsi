@@ -31,7 +31,7 @@ class Wrsi:
             self.rain_negative = _check_negative(self.rain)
             self.same_length_rain = _check_same_length(self.ETa, self.rain)
         
-    def method(self, method = "Original"):
+    def update_method(self, method = "Original"):
         """
         Parameters
         ----------
@@ -44,7 +44,8 @@ class Wrsi:
 
         """
         self.method = method
-            
+        
+    
 def _check_negative(dat):
     """
     Check if there is negative value within the evapotranspiration and rainfall data
