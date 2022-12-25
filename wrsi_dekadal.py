@@ -100,3 +100,22 @@ class wrsi_dekadal(Wrsi):
             wrsi_modified.append(wrsi_temp)
             
         return wrsi_modified
+    
+    def _water_excess_dek(self, ET_a, RR):
+        """
+        Method to determine if there was a water excess within the dekad 
+        Parameters
+        ----------
+        ETa : list
+            evapotranpiration.
+        RR : list
+            evapptranspiration.
+
+        Returns
+        -------
+        bool
+            true if there is water excess.
+        water_excess = RR - ET_a
+        if (water_excess > 100): 
+            return True
+        return False
