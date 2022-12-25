@@ -4,7 +4,7 @@ Created on Sun Dec 25 13:16:29 2022
 
 @author: farafehizoro
 """
-from .wrsi import Wrsi
+from wrsi import Wrsi
 
 class wrsi_daily(Wrsi):
     """
@@ -72,7 +72,7 @@ class wrsi_daily(Wrsi):
             if ( self.ETa[i] < self.ETc[i]): #if there was water deficit
                 diff = self.ETc[i] - self.ETa[i]
                 wrsi_temp = wrsi_temp - 100 * (diff / ETc_tot) #water déficit
-                if(self.with_rain_data): 
+                if(self.with_rain): 
                     if(i < 9): 
                         if(self._water_excess_daily(self.ETa[0:(i+1)], self.rain[0:(i+1)])):
                             wrsi_temp = wrsi_temp - 0.3 #3 divided by 10
@@ -99,7 +99,7 @@ class wrsi_daily(Wrsi):
         for i in range(len(self.ETa)):
             ETa_cumul += self.ETa[i]
             ETc_cumul += self.ETc[i]
-            if(self.with_rain_data):
+            if(self.with_rain):
                 if(i < 9): 
                     if(self._water_excess_daily(self.ETa[0:(i+1)], self.rain[0:(i+1)])):
                         excess_number += 0.1 #plus 1 jour, soit 0.1 dekad
@@ -110,7 +110,7 @@ class wrsi_daily(Wrsi):
             wrsi_modified.append(wrsi_temp)
         return wrsi_modified
         
-    def _water_excess_daily(list_ETa, list_RR):
+    def _water_excess_daily(self, list_ETa, list_RR):
         """
         Method to determine if there was a water success 
         Parameters
