@@ -110,7 +110,7 @@ class wrsi_daily(Wrsi):
             wrsi_modified.append(wrsi_temp)
         return wrsi_modified
         
-    def _water_excess_dek(ETa, RR):
+    def _water_excess_daily(list_ETa, list_RR):
         """
         Method to determine if there was a water success 
         Parameters
@@ -126,8 +126,12 @@ class wrsi_daily(Wrsi):
             DESCRIPTION.
 
         """
-        water_excess = RR - ETa
-        if (water_excess > 100): 
+        sum_RR = sum(list_RR)
+        sum_ETa = sum(list_ETa)
+        water_excess = sum_RR - sum_ETa
+        if (water_excess > 100):
             return True
         return False
+    
+    
         
