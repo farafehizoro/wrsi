@@ -31,7 +31,19 @@ class Wrsi:
             self.rain_negative = _check_negative(self.rain)
             self.same_length_rain = _check_same_length(self.ETa, self.rain)
         
-        
+    def method(self, method = "Original"):
+        """
+        Parameters
+        ----------
+        method : string, optional
+            update the method used to calculate wrsi. The default is "Original".
+
+        Returns
+        -------
+        None.
+
+        """
+        self.method = method
             
 def _check_negative(dat):
     """
