@@ -33,6 +33,7 @@ class Wrsi:
         ----------
         method : string, optional
             update the method used to calculate wrsi. The default is "Original".
+            Valid option: "Original" or "Modified"
 
         Returns
         -------

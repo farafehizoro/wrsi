@@ -50,8 +50,10 @@ class wrsi_daily(Wrsi):
         
         if (self.method == "Original"): #mbol tsy implémenter ko ny fahafatesan'ilay voly : to do
             self.wrsi = self._wrsi_original_daily()
-        else: 
+        elif(self._method == "Modified"):  
             self.wrsi = self._wrsi_modified_daily()
+        else: 
+            print("Invalid method. \nPlease update the method to use with .update_method()")
         return self.wrsi
         
         

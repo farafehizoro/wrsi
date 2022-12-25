@@ -48,10 +48,12 @@ class wrsi_dekadal(Wrsi):
                 self._rain = []
                 self._with_rain = False
         
-        if (self.method == "Original"): #mbol tsy implémenter ko ny fahafatesan'ilay voly : to do
+        if (self._method == "Original"): #mbol tsy implémenter ko ny fahafatesan'ilay voly : to do
             self.wrsi = self._wrsi_original_dekadal()
-        else: 
+        elif(self._method == "Modified"): 
             self.wrsi = self._wrsi_modified_dekadal()
+        else: 
+            print("Invalid method. \nPlease update the method to use with .update_method()")
         return self.wrsi
     
     def _wrsi_original_dekadal(self):
