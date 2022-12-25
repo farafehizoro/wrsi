@@ -15,21 +15,21 @@ class Wrsi:
         * rain (list): rainfall data (optional)
     """
     def __init__(self, ETa, ETc, method = "Original", rain = []):
-        self.ETa = ETa
-        self.ETc = ETc
-        self.method = method
-        self.rain = rain
-        self.with_rain = False
-        if (len(self.rain)>0):
-            self.with_rain = True
-        self.same_length_ET = _check_same_length(self.ETa, self.ETc)
-        self.ETa_negative = _check_negative(self.ETa)
-        self.ETc_negative = _check_negative(self.ETc)
-        self.rain_negative = False
-        self.same_length_rain = False
-        if (self.with_rain):
-            self.rain_negative = _check_negative(self.rain)
-            self.same_length_rain = _check_same_length(self.ETa, self.rain)
+        self._ETa = ETa
+        self._ETc = ETc
+        self._method = method
+        self._rain = rain
+        self._with_rain = False
+        if (len(self._rain)>0):
+            self._with_rain = True
+        self._same_length_ET = _check_same_length(self._ETa, self._ETc)
+        self._ETa_negative = _check_negative(self._ETa)
+        self._ETc_negative = _check_negative(self._ETc)
+        self._rain_negative = False
+        self._same_length_rain = False
+        if (self._with_rain):
+            self._rain_negative = _check_negative(self._rain)
+            self._same_length_rain = _check_same_length(self._ETa, self._rain)
         
     def update_method(self, method = "Original"):
         """
@@ -43,7 +43,7 @@ class Wrsi:
         None.
 
         """
-        self.method = method
+        self._method = method
         
     
 def _check_negative(dat):
