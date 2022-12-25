@@ -115,15 +115,15 @@ class wrsi_daily(Wrsi):
         Method to determine if there was a water success 
         Parameters
         ----------
-        ETa : TYPE
-            DESCRIPTION.
-        RR : TYPE
-            DESCRIPTION.
+        ETa : list
+            evapotranpiration.
+        RR : list
+            evapptranspiration.
 
         Returns
         -------
         bool
-            DESCRIPTION.
+            true if there is water excess.
 
         """
         sum_RR = sum(list_RR)
