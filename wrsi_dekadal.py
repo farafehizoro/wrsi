@@ -76,4 +76,27 @@ class wrsi_dekadal(Wrsi):
                             
             wrsi_original.append(wrsi_temp)
         return wrsi_original
-        
+    
+    def _wrsi_modified_dekadal(self):
+        """
+        calculate dekadal wrsi with modified method
+
+        Returns
+        -------
+        wrsi: list of dekadal wrsi.
+
+        """
+        wrsi_modified = []
+        ETa_cumul = 0
+        ETc_cumul = 0
+        excess_number = 0
+        for i in range(len(self.ETa)):
+            ETa_cumul += self.ETa[i]
+            ETc_cumul += self.ETc[i]
+            if(self.with_rain):
+                if(self._water_excess_dek(self.ETa[i], self.rain[i])):
+                    excess_number += 1  #on compte les nombre de dek avec exces
+            wrsi_temp = 100 * ETa_cumul / ETc_cumul - (excess_number * 3)
+            wrsi_modified.append(wrsi_temp)
+            
+        return wrsi_modified
