@@ -22,6 +22,50 @@ class Wrsi:
         self.with_rain = False
         if (len(self.rain)>0):
             self.with_rain = True
+        self.same_length_ET = _check_same_length(self.ETa, self.ETc)
+        self.ETa_negative = _check_negative(self.ETa)
+        self.ETc_negative = _check_negative(self.ETc)
+        self.rain_negative = False
+        self.same_length_rain = False
+        if (self.with_rain):
+            self.rain_negative = _check_negative(self.rain)
+            self.same_length_rain = _check_same_length(self.ETa, self.rain)
         
-    
+        
+            
+def _check_negative(dat):
+    """
+    Check if there is negative value within the evapotranspiration and rainfall data
 
+    Parameters
+    ----------
+    dat : list
+        
+
+    Returns
+    -------
+    bool: True if there is <0 value, false otherwise
+
+    """
+    for i in range(len(dat)):
+        if (dat[i] < 0):
+            return True
+    return False
+    
+def _check_same_length(dat1, dat2):
+    """
+    Check if the two data has the same length
+    Parameters
+    ----------
+    dat1 : list
+    dat2 : list
+        
+    Returns
+    -------
+    bool : True if the two list has the same length, false otherwise.
+
+    """
+    if (len (dat1) == len(dat2)): 
+        return True
+    else: 
+        return False
