@@ -27,6 +27,7 @@ class wrsi_daily(Wrsi):
 
         """
         self.wrsi = []
+        self._update_status()
         if (not self._same_length_ET):
             print ("ETa and ETo haven't different length, can't calculate wrsi")
             return self.wrsi
