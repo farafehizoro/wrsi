@@ -115,6 +115,7 @@ class wrsi_dekadal(Wrsi):
         -------
         bool
             true if there is water excess.
+        """
         water_excess = RR - ET_a
         if (water_excess > 100): 
             return True
