@@ -112,7 +112,7 @@ class wrsi_daily(Wrsi):
         
     def _water_excess_daily(self, list_ETa, list_RR):
         """
-        Method to determine if there was a water success 
+        Method to determine if there was a water excess 
         Parameters
         ----------
         ETa : list
