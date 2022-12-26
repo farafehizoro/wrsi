@@ -9,7 +9,7 @@ from .wrsi import Wrsi
 class wrsi_daily(Wrsi):
     """
     Class to calculate daily wrsi
-    
+    valid method: "Original" or "Modified"
     
     """
     def __init__(self, ETa, ETc, method = "Original", rain = []):
@@ -23,28 +23,28 @@ class wrsi_daily(Wrsi):
 
         Returns
         -------
-        a list containing the wrsi data .
+        a list containing the daily wrsi data .
 
         """
         self.wrsi = []
         self._update_status()
         if (not self._same_length_ET):
-            print ("ETa and ETo haven't different length, can't calculate wrsi")
+            print ("ETa and ETc do not have the same length. \n Wrsi cannot be calculated")
             return self.wrsi
         #check if there are negative number
         
         if (self._ETa_negative or self._ETc_negative): 
-            print("negative number for ETa or ETo, please check your data. Can't calculate wrsi")
+            print("Negative number in ETa or ETc, please check your data. \nWrsi cannot be calculated")
             return self.wrsi
         
         #check rain data lenght and value (>0)
         if (self._with_rain):  #verify the rain data
             if(not self._same_length_rain):
-                print ("Rain doesn't have the same length as evapotranspiration. Rain not considered for wrsi calculation.")
+                print ("Rain does not have the same length as ETa and ETc. Rain data is not considered for wrsi calculation.")
                 self._rain = []
                 self._with_rain = False
             if (self._rain_negative):
-                print("Negative value for Rain data, please check your data. Rain not considered for wrsi calculation.")
+                print("Negative value for Rain data, please check your data. Rain data is not considered for wrsi calculation.")
                 self._rain = []
                 self._with_rain = False
         
