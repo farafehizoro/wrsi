@@ -1,4 +1,17 @@
 # Water requirement satisfaction index (WRSI) calculator
+```
+from wrsi import wrsi_dekadal
+from wrsi import wrsi_daily
+
+calculate_wrsi_dek = wrsi_dekadal(ETa, ETc, method = "Modified", rain = Rain_data_list)
+calculate_wrsi_dek.calculate_wrsi_dekadal()
+print(calculate_wrsi_dek.wrsi)
+
+calculate_wrsi_daily = wrsi_dekadal(ETa, ETc, method = "Original")
+calculate_wrsi_dek.calculate_wrsi_daily()
+print(calculate_wrsi_daily.wrsi)
+
+```
 
 Calculation of the Water requirement satisfaction index (WRSI) for annual crop. 
 
