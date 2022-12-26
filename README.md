@@ -28,5 +28,6 @@ Two timestep are avalaible for the calculation, depending on the input data:
 The input data must have the same timestep and length.
 
 # Install
-
+```
 pip install wrsi
+```
