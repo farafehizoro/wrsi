@@ -54,6 +54,8 @@ class wrsi_daily(Wrsi):
             self.wrsi = self._wrsi_modified_daily()
         else: 
             print("Invalid method. \nPlease update the method to use with .update_method()")
+           
+        self.check_parameter()
         return self.wrsi
         
         

@@ -53,6 +53,8 @@ class wrsi_dekadal(Wrsi):
             self.wrsi = self._wrsi_modified_dekadal()
         else: 
             print("Invalid method. \nPlease update the method to use with .update_method()")
+        
+        self.check_parameter()
         return self.wrsi
     
     def _wrsi_original_dekadal(self):

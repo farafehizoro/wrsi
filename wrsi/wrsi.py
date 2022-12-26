@@ -64,7 +64,11 @@ class Wrsi:
             self._rain_negative = _check_negative(self._rain)
             self._same_length_rain = _check_same_length(self._ETa, self._rain)
         
-        
+    def check_parameter(self):
+        if (self._with_rain): 
+            print ("Wrsi calculated using {} method, considering water excess.".format(self._method))
+        else: 
+            print ("Wrsi calculated using {} method. Water excess was not considered.".format(self._method))
         
 def _check_negative(dat):
     """
