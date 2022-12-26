@@ -73,7 +73,7 @@ class wrsi_dekadal(Wrsi):
             if ( self._ETa[i] < self._ETc[i]): #if there was water deficit
                 diff = self._ETc[i] - self._ETa[i]
                 wrsi_temp = wrsi_temp - 100 * (diff / ETc_tot) #water déficit
-                if(self.with_rain): 
+                if(self._with_rain): 
                     if(self._water_excess_dek(self._ETa[i], self._rain[i])):
                         wrsi_temp = wrsi_temp - 3    
                             
@@ -96,7 +96,7 @@ class wrsi_dekadal(Wrsi):
         for i in range(len(self._ETa)):
             ETa_cumul += self._ETa[i]
             ETc_cumul += self._ETc[i]
-            if(self.with_rain):
+            if(self._with_rain):
                 if(self._water_excess_dek(self._ETa[i], self._rain[i])):
                     excess_number += 1  #on compte les nombre de dek avec exces
             wrsi_temp = 100 * ETa_cumul / ETc_cumul - (excess_number * 3)

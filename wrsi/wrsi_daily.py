@@ -48,7 +48,7 @@ class wrsi_daily(Wrsi):
                 self._rain = []
                 self._with_rain = False
         
-        if (self.method == "Original"): #mbol tsy implémenter ko ny fahafatesan'ilay voly : to do
+        if (self._method == "Original"): #mbol tsy implémenter ko ny fahafatesan'ilay voly : to do
             self.wrsi = self._wrsi_original_daily()
         elif(self._method == "Modified"):  
             self.wrsi = self._wrsi_modified_daily()
